@@ -43,6 +43,15 @@
                     </a>
                 </li>
 
+                <!-- Archives -->
+                <li class="nav-item">
+                    <a href="{{ route('archives.index') }}"
+                       class="nav-link {{ request()->routeIs('archives.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-archive"></i>
+                        <p>Arsip</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

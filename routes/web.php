@@ -35,6 +35,10 @@ Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(func
     Route::resource('users', \App\Http\Controllers\Superadmin\UserController::class);
 });
 
+Route::middleware(['auth', 'role:arsiparis'])->prefix('archivist')->group(function () {
+    Route::resource('archives', \App\Http\Controllers\Archivist\ArchiveController::class);
+});
+
 
 // Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
 //     Route::get('/users', [UserController::class, 'index'])->name('users.index');
