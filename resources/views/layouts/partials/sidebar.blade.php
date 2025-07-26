@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('home') }}" class="brand-link">
+    <a href="{{ route('dashboard') }}" class="brand-link">
         <img src="{{ asset('assets/img/AdminLTELogo.png') }}"
              alt="Logo"
              class="brand-image img-circle elevation-3"
@@ -27,8 +27,8 @@
                 role="menu" data-accordion="false">
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a href="{{ route('home') }}"
-                       class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}"
+                       class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>

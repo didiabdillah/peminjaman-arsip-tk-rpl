@@ -25,12 +25,9 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/home', function () {
-        return view('pages.dashboard');
-    })->name('home');
-});
+use App\Http\Controllers\DashboardController;
 
+Route::middleware(['auth'])->get('/home', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
     Route::resource('users', \App\Http\Controllers\Superadmin\UserController::class);
 });
