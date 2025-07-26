@@ -70,6 +70,15 @@
                     </a>
                 </li>
 
+                <!-- Reports -->
+                <li class="nav-item">
+                    <a href="{{ route('report.index') }}"
+                       class="nav-link {{ request()->routeIs('reports.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>Laporan</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

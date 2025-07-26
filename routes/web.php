@@ -57,6 +57,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 });
 
+use App\Http\Controllers\Archivist\ReportController;
+
+Route::get('report/borrowings', [ReportController::class, 'index'])->name('report.index');
+Route::get('report/borrowings/pdf', [ReportController::class, 'exportPdf'])->name('report.pdf');
+Route::get('report/borrowings/excel', [ReportController::class, 'exportExcel'])->name('report.excel');
+
 
 // Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
 //     Route::get('/users', [UserController::class, 'index'])->name('users.index');
