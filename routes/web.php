@@ -31,6 +31,11 @@ Route::middleware('auth')->group(function () {
     })->name('home');
 });
 
+Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
+    Route::resource('users', \App\Http\Controllers\Superadmin\UserController::class);
+});
+
+
 // Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
 //     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 //     // Tambahkan CRUD user di sini

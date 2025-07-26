@@ -4,18 +4,29 @@
   <meta charset="UTF-8">
   <title>@yield('title', 'Peminjaman Arsip')</title>
   <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
-<form action="{{ route('logout') }}" method="POST">
-  @csrf
-  <button type="submit" class="btn btn-danger btn-sm">Logout</button>
-</form>
 
 <div class="wrapper">
-  @yield('content')
+    <!-- Header -->
+    @if(auth()->check())
+    @include('layouts.partials.header')
+    
+    <!-- Sidebar -->
+    @include('layouts.partials.sidebar')
+    @endif
+
+     <!-- Content Wrapper -->
+    {{-- <div class="content-wrapper"> --}}
+        @yield('content')
+    {{-- </div> --}}
+
+    <!-- Footer -->
+    @include('layouts.partials.footer')
 </div>
 
-<script src="{{ asset('assets/plugins/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
 </body>
