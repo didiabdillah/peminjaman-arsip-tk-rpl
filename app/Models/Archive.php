@@ -10,4 +10,9 @@ class Archive extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function borrowings() {
+        return $this->hasMany(Borrowing::class);
+    }
+
 }
