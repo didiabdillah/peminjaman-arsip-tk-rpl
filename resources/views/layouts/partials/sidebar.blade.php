@@ -61,6 +61,15 @@
                     </a>
                 </li>
 
+                <!-- Borrowings -->
+                <li class="nav-item">
+                    <a href="{{ route('borrowings.index') }}"
+                       class="nav-link {{ request()->routeIs('borrowings.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-handshake"></i>
+                        <p>Peminjaman</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

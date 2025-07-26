@@ -45,6 +45,13 @@ Route::middleware(['auth', 'role:peminjam'])->prefix('borrower')->group(function
     Route::get('my-requests', [\App\Http\Controllers\Borrower\CatalogController::class, 'myRequests'])->name('catalog.requests');
 });
 
+Route::middleware(['auth', 'role:arsiparis'])->prefix('archivist')->group(function () {
+    Route::get('borrowings', [\App\Http\Controllers\Archivist\BorrowingController::class, 'index'])->name('borrowings.index');
+    Route::get('borrowings/approve/{id}', [\App\Http\Controllers\Archivist\BorrowingController::class, 'approve'])->name('borrowings.approve');
+    Route::get('borrowings/reject/{id}', [\App\Http\Controllers\Archivist\BorrowingController::class, 'reject'])->name('borrowings.reject');
+    Route::get('borrowings/return/{id}', [\App\Http\Controllers\Archivist\BorrowingController::class, 'markReturned'])->name('borrowings.return');
+});
+
 
 // Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
 //     Route::get('/users', [UserController::class, 'index'])->name('users.index');
