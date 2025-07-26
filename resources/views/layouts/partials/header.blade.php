@@ -33,7 +33,7 @@
                 </li>
                 <!-- Menu Footer -->
                 <li class="user-footer">
-                    {{-- <a href="{{ route('account.edit') }}" class="btn btn-default btn-flat">Profile</a> --}}
+                    <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-default btn-flat float-right">Logout</button>

@@ -52,6 +52,14 @@ Route::middleware(['auth', 'role:arsiparis'])->prefix('archivist')->group(functi
     Route::get('borrowings/return/{id}', [\App\Http\Controllers\Archivist\BorrowingController::class, 'markReturned'])->name('borrowings.return');
 });
 
+use App\Http\Controllers\ProfileController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+});
+
 
 // Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
 //     Route::get('/users', [UserController::class, 'index'])->name('users.index');
