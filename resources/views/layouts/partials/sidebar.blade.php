@@ -61,6 +61,15 @@
                     </a>
                 </li>
 
+                <!-- My Requests -->
+                <li class="nav-item">
+                    <a href="{{ route('catalog.requests') }}"
+                       class="nav-link {{ request()->routeIs('catalog.requests.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>Pengajuan Saya</p>
+                    </a>
+                </li>
+
                 <!-- Borrowings -->
                 <li class="nav-item">
                     <a href="{{ route('borrowings.index') }}"
