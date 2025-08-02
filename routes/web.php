@@ -49,11 +49,11 @@ Route::middleware(['auth', ])->prefix('borrower')->group(function () {
 
 Route::get('my-requests', [\App\Http\Controllers\CatalogController::class, 'myRequests'])->middleware(['auth'])->name('catalog.my-requests');
 
-Route::middleware(['auth', 'role:arsiparis'])->prefix('archivist')->group(function () {
-    Route::get('borrowings', [\App\Http\Controllers\Archivist\BorrowingController::class, 'index'])->name('borrowings.index');
-    Route::get('borrowings/approve/{id}', [\App\Http\Controllers\Archivist\BorrowingController::class, 'approve'])->name('borrowings.approve');
-    Route::get('borrowings/reject/{id}', [\App\Http\Controllers\Archivist\BorrowingController::class, 'reject'])->name('borrowings.reject');
-    Route::get('borrowings/return/{id}', [\App\Http\Controllers\Archivist\BorrowingController::class, 'markReturned'])->name('borrowings.return');
+Route::middleware(['auth', 'role:arsiparis,superadmin'])->group(function () {
+    Route::get('borrowings', [\App\Http\Controllers\BorrowingController::class, 'index'])->name('borrowings.index');
+    Route::get('borrowings/approve/{id}', [\App\Http\Controllers\BorrowingController::class, 'approve'])->name('borrowings.approve');
+    Route::get('borrowings/reject/{id}', [\App\Http\Controllers\BorrowingController::class, 'reject'])->name('borrowings.reject');
+    Route::get('borrowings/return/{id}', [\App\Http\Controllers\BorrowingController::class, 'markReturned'])->name('borrowings.return');
 });
 
 Route::middleware(['auth'])->group(function () {

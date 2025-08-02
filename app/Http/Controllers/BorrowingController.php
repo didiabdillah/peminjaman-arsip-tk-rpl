@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Archivist;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class BorrowingController extends Controller
     public function index()
     {
         $borrowings = Borrowing::with('user', 'archive')->orderByDesc('created_at')->get();
-        return view('pages.archivist.borrowings.index', compact('borrowings'));
+        return view('pages.borrowings.index', compact('borrowings'));
     }
 
     public function approve($id)
