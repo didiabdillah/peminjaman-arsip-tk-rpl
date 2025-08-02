@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>@yield('title', 'Peminjaman Arsip')</title>
+  <link rel="shortcut icon" href="{{ asset('assets/img/logo/logo-2.png') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
 </head>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,12 +12,12 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('role', '!=', 'superadmin')->get();
-        return view('pages.superadmin.users.index', compact('users'));
+        return view('pages.users.index', compact('users'));
     }
 
     public function create()
     {
-        return view('pages.superadmin.users.create');
+        return view('pages.users.create');
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('pages.superadmin.users.edit', compact('user'));
+        return view('pages.users.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
@@ -46,7 +46,8 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required', 
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'role' => 'required|in:arsiparis,peminjam'
+            'role' => 'required|in:arsiparis,peminjam',
+            'password' => 'nullable|min:6|confirmed',
         ]);
 
         $user->update([
@@ -54,6 +55,13 @@ class UserController extends Controller
             'email' => $request->email,
             'role' => $request->role,
         ]);
+
+        if ($request->password) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+        
         return redirect()->route('users.index')->with('success', 'User berhasil diupdate');
     }
 

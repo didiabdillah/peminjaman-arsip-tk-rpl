@@ -35,9 +35,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 use App\Http\Controllers\DashboardController;
 
 Route::middleware(['auth'])->get('/home', [DashboardController::class, 'index'])->name('dashboard');
-Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
-    Route::resource('users', \App\Http\Controllers\Superadmin\UserController::class);
-});
+Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:superadmin');
 
 Route::middleware(['auth', 'role:arsiparis'])->prefix('archivist')->group(function () {
     Route::resource('archives', \App\Http\Controllers\Archivist\ArchiveController::class);
