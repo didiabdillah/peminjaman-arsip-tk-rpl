@@ -44,9 +44,10 @@ Route::resource('archives', ArchiveController::class)->middleware('role:arsipari
 
 Route::middleware(['auth', ])->prefix('borrower')->group(function () {
     // Route::get('catalog', [\App\Http\Controllers\Borrower\CatalogController::class, 'index'])->name('catalog.index');
-    Route::get('catalog/request/{id}', [\App\Http\Controllers\Borrower\CatalogController::class, 'requestBorrow'])->name('catalog.request');
-    Route::get('my-requests', [\App\Http\Controllers\Borrower\CatalogController::class, 'myRequests'])->name('catalog.requests');
+    // Route::get('catalog/request/{id}', [\App\Http\Controllers\Borrower\CatalogController::class, 'requestBorrow'])->name('catalog.request');
 });
+
+Route::get('my-requests', [\App\Http\Controllers\CatalogController::class, 'myRequests'])->middleware(['auth'])->name('catalog.my-requests');
 
 Route::middleware(['auth', 'role:arsiparis'])->prefix('archivist')->group(function () {
     Route::get('borrowings', [\App\Http\Controllers\Archivist\BorrowingController::class, 'index'])->name('borrowings.index');

@@ -40,6 +40,13 @@
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
 
+        @if(Auth::check())
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('catalog.my-requests') }}">
+                <i class="far fa-hourglass"></i>
+            </a>
+        </li>
+
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
@@ -67,6 +74,7 @@
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
         </li>
+        @endif
         <li class="nav-item ml-2 dropdown user-menu">
           @if(Auth::check())
             {{-- Profile --}}

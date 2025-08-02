@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Borrower;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -47,6 +47,6 @@ class CatalogController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return view('pages.borrower.catalog.my-requests', compact('requests'));
+        return view('pages.my-requests', compact('requests'));
     }
 }
