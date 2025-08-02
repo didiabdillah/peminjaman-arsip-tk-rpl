@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 @section('title', 'My Borrow Requests')
 @section('content')
 <div class="content-wrapper p-4">

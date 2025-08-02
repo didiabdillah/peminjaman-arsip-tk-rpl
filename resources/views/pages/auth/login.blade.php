@@ -1,21 +1,50 @@
-@extends('layouts.app')
+@extends('layouts.auth.app')
 @section('title', 'Login')
 
 @section('content')
 <div class="login-box">
-  <div class="login-logo"><b>Login</b> Arsip</div>
-  <div class="card">
-    <div class="card-body login-card-body">
-      <form action="{{ route('login') }}" method="POST">@csrf
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="{{ url('/') }}" class="h1">{{ config('app.name') }}</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      <form action="{{ route('login') }}" method="post">
+        @csrf
         <div class="input-group mb-3">
           <input type="email" name="email" class="form-control" placeholder="Email" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
         </div>
         <div class="input-group mb-3">
           <input type="password" name="password" class="form-control" placeholder="Password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </div>
+          <!-- /.col -->
+        </div>
       </form>
+      <hr>
+      <p class="mb-0 text-center">
+        <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+      </p>
     </div>
+    <!-- /.card-body -->
   </div>
+  <!-- /.card -->
 </div>
+<!-- /.login-box -->
 @endsection

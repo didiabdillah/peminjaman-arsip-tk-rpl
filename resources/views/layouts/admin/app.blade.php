@@ -11,10 +11,10 @@
 <div class="wrapper">
     <!-- Header -->
     @if(auth()->check())
-    @include('layouts.partials.header')
+    @include('layouts.admin.partials.header')
     
     <!-- Sidebar -->
-    @include('layouts.partials.sidebar')
+    @include('layouts.admin.partials.sidebar')
     @endif
 
      <!-- Content Wrapper -->
@@ -23,7 +23,7 @@
     {{-- </div> --}}
 
     <!-- Footer -->
-    @include('layouts.partials.footer')
+    @include('layouts.admin.partials.footer')
 </div>
 
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
