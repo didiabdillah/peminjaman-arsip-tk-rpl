@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('pages.homepage.index');
 });
 
+Route::get('/catalog', function () {
+    return view('pages.catalog.index');
+})->name('catalog.index');
+Route::get('/catalog/{id}/show', function () {
+    return view('pages.catalog.show');
+})->name('catalog.show');
+
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -36,8 +43,8 @@ Route::middleware(['auth', 'role:arsiparis'])->prefix('archivist')->group(functi
     Route::resource('archives', \App\Http\Controllers\Archivist\ArchiveController::class);
 });
 
-Route::middleware(['auth', 'role:peminjam'])->prefix('borrower')->group(function () {
-    Route::get('catalog', [\App\Http\Controllers\Borrower\CatalogController::class, 'index'])->name('catalog.index');
+Route::middleware(['auth', ])->prefix('borrower')->group(function () {
+    // Route::get('catalog', [\App\Http\Controllers\Borrower\CatalogController::class, 'index'])->name('catalog.index');
     Route::get('catalog/request/{id}', [\App\Http\Controllers\Borrower\CatalogController::class, 'requestBorrow'])->name('catalog.request');
     Route::get('my-requests', [\App\Http\Controllers\Borrower\CatalogController::class, 'myRequests'])->name('catalog.requests');
 });
