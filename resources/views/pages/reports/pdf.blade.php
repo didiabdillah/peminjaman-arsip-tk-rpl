@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Borrowings Report</title>
+    <title>Laporan Peminjaman Arsip</title>
     <style>
         table { width: 100%; border-collapse: collapse }
         th, td { border: 1px solid black; padding: 6px; text-align: left; }
     </style>
 </head>
 <body>
-    <h2>Borrowings Report</h2>
+    <h2>Laporan Laporan Peminjaman Arsip</h2>
     <table>
         <thead>
             <tr>
-                <th>User</th><th>Archive</th><th>Status</th><th>Borrow Date</th><th>Return Date</th>
+                <th>No</th>
+                <th>Pengguna</th>
+                <th>Arsip</th>
+                <th>Status</th>
+                <th>Tanggal Pinjam</th>
+                <th>Tanggal Kembali</th>
             </tr>
         </thead>
         <tbody>
             @foreach($borrowings as $b)
             <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $b->user->name }}</td>
                 <td>{{ $b->archive->title }}</td>
                 <td>{{ ucfirst($b->status) }}</td>
