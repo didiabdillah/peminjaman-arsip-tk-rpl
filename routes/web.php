@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ArchiveController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,14 +35,10 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-use App\Http\Controllers\DashboardController;
-
 Route::middleware(['auth'])->get('/home', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:superadmin');
 
-Route::middleware(['auth', 'role:arsiparis'])->prefix('archivist')->group(function () {
-    Route::resource('archives', \App\Http\Controllers\Archivist\ArchiveController::class);
-});
+Route::resource('archives', ArchiveController::class)->middleware('role:arsiparis,superadmin');
 
 Route::middleware(['auth', ])->prefix('borrower')->group(function () {
     // Route::get('catalog', [\App\Http\Controllers\Borrower\CatalogController::class, 'index'])->name('catalog.index');
