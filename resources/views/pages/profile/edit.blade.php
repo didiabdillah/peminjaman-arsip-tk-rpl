@@ -20,7 +20,13 @@
         <div class="card-body">
             <h3>Edit Profile</h3>
             
-            <form action="{{ route('profile.update') }}" method="POST">@csrf @method('PUT')
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                @csrf 
+                @method('PUT')
+                <div class="form-group">
+                    <label>Foto Profile</label>
+                    <input name="avatar" class="form-control" value="{{ old('avatar', $user->avatar) }}" type="file">
+                </div>
                 <div class="form-group">
                     <label>Nama</label>
                     <input name="name" class="form-control" value="{{ old('name', $user->name) }}" required>
