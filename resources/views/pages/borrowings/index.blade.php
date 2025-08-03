@@ -4,7 +4,7 @@
 <div class="content-wrapper p-4">
     <div class="card">
         <div class="card-header">
-            <h3>Manajemen Peminjaman</h3>
+            <h3>Pengajuan Peminjaman</h3>
         </div>
         <div class="card-body">
             @if(session('success')) <div class="alert alert-success">{{ session('success') }}</div> @endif
@@ -18,7 +18,9 @@
                         <th>Arsip</th>
                         <th>Status</th>
                         <th>Tanggal Pinjam</th>
+                        <th>Rencana Tanggal Kembali</th>
                         <th>Tanggal Kembali</th>
+                        <th>Tujuan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -35,13 +37,15 @@
                             </span>
                         </td>
                         <td>{{ $b->borrow_date ?? '-' }}</td>
+                        <td>{{ $b->estimated_return_date ?? '-' }}</td>
                         <td>{{ $b->return_date ?? '-' }}</td>
+                        <td class="text-wrap">{{ $b->purpose ?? '-' }}</td>
                         <td>
                             @if($b->status == 'pending')
-                                <a href="{{ route('borrowings.approve', $b->id) }}" class="btn btn-success btn-sm">Setuju</a>
-                                <a href="{{ route('borrowings.reject', $b->id) }}" class="btn btn-danger btn-sm">Tolak</a>
+                                <a href="{{ route('borrowings.approve', $b->id) }}" class="btn btn-success btn-sm m-1">Setuju</a>
+                                <a href="{{ route('borrowings.reject', $b->id) }}" class="btn btn-danger btn-sm m-1">Tolak</a>
                             @elseif($b->status == 'approved' && !$b->return_date)
-                                <a href="{{ route('borrowings.return', $b->id) }}" class="btn btn-info btn-sm">Tandai Sudah Dikembalikan</a>
+                                <a href="{{ route('borrowings.return', $b->id) }}" class="btn btn-info btn-sm m-1">Tandai Sudah Dikembalikan</a>
                             @else
                                 -
                             @endif

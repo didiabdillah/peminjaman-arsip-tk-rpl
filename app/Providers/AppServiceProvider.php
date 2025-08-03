@@ -26,5 +26,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::component('page-header', PageHeader::class);
         Blade::component('breadcrumb', Breadcrumb::class);
+
+        //timezone
+        date_default_timezone_set('Asia/Jakarta');
     }
 }

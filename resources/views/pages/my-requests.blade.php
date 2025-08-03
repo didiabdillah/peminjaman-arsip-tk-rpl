@@ -24,8 +24,9 @@
                         <th>No</th>
                         <th>Kode Arsip</th>
                         <th>Arsip</th>
-                        <th>Tanggal Pinjam</th>
                         <th>Status</th>
+                        <th>Tanggal Pinjam</th>
+                        <th>Rencana Tanggal Kembali</th>
                         <th>Tanggal Kembali</th>
                     </tr>
                 </thead>
@@ -35,12 +36,13 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $r->archive->archive_code }}</td>
                         <td>{{ $r->archive->title }}</td>
-                        <td>{{ $r->borrow_date ?? '-' }}</td>
                         <td>
                             <span class="badge badge-{{ $r->status == 'approved' ? 'success' : ($r->status == 'pending' ? 'warning' : ($r->status == 'rejected' ? 'danger' : 'info')) }}">
                                 {{ ucfirst($r->status) }}
                             </span>
                         </td>
+                        <td>{{ $r->borrow_date ?? '-' }}</td>
+                        <td>{{ $r->estimated_return_date ?? '-' }}</td>
                         <td>{{ $r->return_date ?? '-' }}</td>
                     </tr>
                     @endforeach

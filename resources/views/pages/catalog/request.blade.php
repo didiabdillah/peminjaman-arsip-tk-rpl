@@ -60,12 +60,30 @@
                                 
                 </div>
             </div>
+
+            <hr>
             
             <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <a href="{{ route('catalog.request-borrow', $archive->id) }}" class="btn btn-outline-primary btn-lg" @if ($status == 'Tidak Tersedia') disabled @endif>
-                        <i class="fas fa-handshake mr-2"></i> Ajukan Pinjam Arsip
-                    </a>
+                <div class="col-12">
+                    <form action="{{ route('catalog.request-borrow', $archive->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="archive_id" value="{{ $archive->id }}">
+
+                        <div>
+                            <label for="purpose">Tujuan Keperluan</label>
+                            <input type="text" name="purpose" value="{{ old('purpose') }}" class="mb-3 form-control" placeholder="Tujuan Keperluan" required>
+                        </div>
+                        <div>
+                            <label for="return-date">Rencana Pengembalian</label>
+                            <input type="date" name="return-date" value="{{ old('return-date') }}" class="mb-3 form-control" placeholder="Rencana Pengembalian" required>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-outline-primary btn-lg text-center btn-block" @if ($status == 'Tidak Tersedia') disabled @endif>
+                            <i class="fas fa-handshake mr-2"></i> Pinjam Arsip Ini
+                        </button>
+                    </form>
                 </div>
             </div>
 

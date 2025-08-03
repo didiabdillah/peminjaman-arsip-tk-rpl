@@ -1,13 +1,13 @@
 @extends('layouts.admin.app')
-@section('title', 'Archive Management')
+@section('title', 'Daftar Arsip')
 @section('content')
 <div class="content-wrapper p-4">
     <div class="card">
         <div class="card-header">
-            <h3>Archive List</h3>
+            <h3>Arsip</h3>
         </div>
         <div class="card-body">
-            <a href="{{ route('archives.create') }}" class="btn btn-primary mb-3">+ Add Archive</a>
+            <a href="{{ route('archives.create') }}" class="btn btn-primary mb-3">+ Tambah Arsip</a>
         
             @if(session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
@@ -17,12 +17,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Code</th>
-                        <th>Title</th>
-                        <th>Category</th>
+                        <th>Kode</th>
+                        <th>Judul</th>
+                        <th>Kategori</th>
                         <th>Quantity</th>
                         <th>Gambar</th>
-                        <th>Created By</th>
+                        <th>Publikasi oleh</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -43,7 +43,7 @@
                             <a href="{{ route('archives.edit', $a->id) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="{{ route('archives.destroy', $a->id) }}" method="POST" style="display:inline-block;">
                                 @csrf @method('DELETE')
-                                <button onclick="return confirm('Delete this archive?')" class="btn btn-danger btn-sm">Delete</button>
+                                <button onclick="return confirm('Delete this archive?')" class="btn btn-danger btn-sm">Hapus</button>
                             </form>
                         </td>
                     </tr>

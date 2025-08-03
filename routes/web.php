@@ -29,7 +29,8 @@ Route::get('/about', function () {
 Route::prefix('/catalog')->group(function () {
     Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog.index');
     Route::get('/{id}/show', [\App\Http\Controllers\CatalogController::class, 'show'])->name('catalog.show');
-    Route::post('{id}/request-borrow', [\App\Http\Controllers\CatalogController::class, 'requestBorrow'])->middleware(['auth'])->name('catalog.request-borrow');
+    Route::get('{id}/request-borrow', [\App\Http\Controllers\CatalogController::class, 'requestBorrow'])->middleware(['auth'])->name('catalog.request-borrow');
+    Route::post('{id}/request-borrow', [\App\Http\Controllers\CatalogController::class, 'requestBorrowPost'])->middleware(['auth'])->name('catalog.request-borrow.post');
 });
 
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
@@ -44,10 +45,6 @@ Route::middleware(['auth'])->get('/home', [DashboardController::class, 'index'])
 Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:superadmin');
 
 Route::resource('archives', ArchiveController::class)->middleware('role:arsiparis,superadmin');
-
-Route::middleware(['auth', ])->prefix('borrower')->group(function () {
-    // Route::get('catalog', [\App\Http\Controllers\Borrower\CatalogController::class, 'index'])->name('catalog.index');
-});
 
 Route::get('my-requests', [\App\Http\Controllers\CatalogController::class, 'myRequests'])->middleware(['auth'])->name('catalog.my-requests');
 
@@ -68,4 +65,4 @@ Route::middleware(['auth', 'role:superadmin,arsiparis'])->group(function () {
     Route::get('report/borrowings', [ReportController::class, 'index'])->name('report.index');
     Route::get('report/borrowings/pdf', [ReportController::class, 'exportPdf'])->name('report.pdf');
     Route::get('report/borrowings/excel', [ReportController::class, 'exportExcel'])->name('report.excel');
-    });
+});

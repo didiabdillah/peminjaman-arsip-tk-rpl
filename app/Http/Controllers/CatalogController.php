@@ -43,6 +43,19 @@ class CatalogController extends Controller
     {
         $archive = Archive::findOrFail($id);
 
+        return view('pages.catalog.request', compact('archive'));
+    }
+
+    public function requestBorrowPost(Request $request, $id)
+    {
+        //validation
+        $request->validate([
+            'return-date' => 'required|date|after_or_equal:today',
+            'purpose' => 'required|max:1024'
+        ]);
+
+        $archive = Archive::findOrFail($id);
+
         // Cek duplikat request pending
         $exists = Borrowing::where('user_id', Auth::id())
             ->where('archive_id', $id)
@@ -63,6 +76,9 @@ class CatalogController extends Controller
             'user_id' => Auth::id(),
             'archive_id' => $id,
             'status' => 'pending',
+            'purpose' => $request->purpose,
+            'borrow_date' => now(),
+            'estimated_return_date' => $request->input('return-date'),
         ]);
 
         return back()->with('success', 'Pengajuan peminjaman berhasil.');
