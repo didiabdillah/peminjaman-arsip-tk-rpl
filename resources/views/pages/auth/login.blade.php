@@ -9,7 +9,7 @@
       <a href="{{ url('/') }}" class="h1">{{ config('app.name') }}</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Silahkan Masuk</p>
 
       <form action="{{ route('login') }}" method="post">
         @csrf
@@ -39,7 +39,7 @@
       </form>
       <hr>
       <p class="mb-0 text-center">
-        <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+        <a href="{{ route('register') }}" class="text-center">Daftar Pengguna Baru</a>
       </p>
     </div>
     <!-- /.card-body -->

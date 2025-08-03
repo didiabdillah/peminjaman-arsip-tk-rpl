@@ -2,7 +2,7 @@
 @section('title', 'My Dashboard')
 @section('content')
 <div class="content-wrapper p-4">
-    <h3>My Borrowing Summary</h3>
+    <h3>Ringkasan Peminjaman</h3>
     <div class="row">
         <div class="col-md-6">
             <div class="small-box bg-info">

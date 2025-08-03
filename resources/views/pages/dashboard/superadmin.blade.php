@@ -5,7 +5,7 @@
 <div class="content-wrapper p-4">
     <div class="card">
         <div class="card-header">
-            <h3>Dashboard Summary</h3>
+            <h3>Dashboard</h3>
         </div>
         <div class="card-body">
             <div class="row">

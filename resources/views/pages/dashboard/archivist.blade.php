@@ -2,7 +2,7 @@
 @section('title', 'Archivist Dashboard')
 @section('content')
 <div class="content-wrapper p-4">
-    <h3>Archive & Borrowing Summary</h3>
+    <h3>Ringkasan Arsip Dan Peminjaman</h3>
     <div class="row">
         <div class="col-md-6">
             <div class="small-box bg-primary">

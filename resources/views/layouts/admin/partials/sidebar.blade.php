@@ -31,6 +31,7 @@
                 </li>
 
                 <!-- Users -->
+                @if(auth()->user()->role == 'superadmin')
                 <li class="nav-item">
                     <a href="{{ route('users.index') }}"
                        class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
@@ -38,7 +39,9 @@
                         <p>Pengguna</p>
                     </a>
                 </li>
+                @endif
 
+                @if(in_array(auth()->user()->role, ['superadmin', 'arsiparis']))
                 <!-- Archives -->
                 <li class="nav-item">
                     <a href="{{ route('archives.index') }}"
@@ -47,6 +50,7 @@
                         <p>Arsip</p>
                     </a>
                 </li>
+                @endif
 
                 <!-- Catalog -->
                 {{-- <li class="nav-item">
@@ -67,6 +71,7 @@
                 </li> --}}
 
                 <!-- Borrowings -->
+                @if(in_array(auth()->user()->role, ['superadmin', 'arsiparis']))
                 <li class="nav-item">
                     <a href="{{ route('borrowings.index') }}"
                        class="nav-link {{ request()->routeIs('borrowings.*') ? 'active' : '' }}">
@@ -74,8 +79,10 @@
                         <p>Peminjaman</p>
                     </a>
                 </li>
+                @endif
 
                 <!-- Reports -->
+                @if(in_array(auth()->user()->role, ['superadmin', 'arsiparis']))
                 <li class="nav-item">
                     <a href="{{ route('report.index') }}"
                        class="nav-link {{ request()->routeIs('reports.*') ? 'active' : '' }}">
@@ -83,6 +90,7 @@
                         <p>Laporan</p>
                     </a>
                 </li>
+                @endif
 
             </ul>
         </nav>
