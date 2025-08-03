@@ -12,9 +12,31 @@ class CatalogController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->search;
-        $archives = Archive::where('title', 'like', "%$search%")->get();
-        return view('pages.borrower.catalog.index', compact('archives', 'search'));
+        $keyword = $request->keyword;
+        $startReleasedYear = $request->start_released_year;
+        $endReleasedYear = $request->end_released_year;
+
+        $archives = Archive::with('borrowings')
+            ->where('title', 'like', "%$keyword%");
+        
+        if ($startReleasedYear && $endReleasedYear) {
+            $archives = $archives->whereBetween('created_at', [date('Y-m-d', strtotime($startReleasedYear . '-01-01')), date('Y-m-d', strtotime($endReleasedYear . '-12-31'))]);
+        }else if ($startReleasedYear) {
+            $archives = $archives->where('created_at', '>=', date('Y-m-d', strtotime($startReleasedYear . '-01-01')));
+        }else if ($endReleasedYear) {
+            $archives = $archives->where('created_at', '<=', date('Y-m-d', strtotime($endReleasedYear . '-12-31')));
+        }
+
+        $archives = $archives->paginate(10);
+
+        return view('pages.catalog.index', compact('archives', 'keyword'));
+    }
+
+    public function show($id)
+    {
+        $archive = Archive::findOrFail($id);
+
+        return view('pages.catalog.show', compact('archive'));
     }
 
     public function requestBorrow($id)
@@ -28,7 +50,13 @@ class CatalogController extends Controller
             ->exists();
 
         if ($exists) {
-            return back()->with('error', 'You already have a pending request for this archive.');
+            return back()->with('error', 'Anda sudah mengajukan peminjaman untuk arsip ini.');
+        }
+
+        //cek apakah masih tersedia
+        $borrowings = $archive->borrowings->whereIn('status', ['approved', 'pending']);
+        if ($borrowings->count() >= $archive->quantity) {
+            return back()->with('error', 'Arsip ini tidak tersedia.');
         }
 
         Borrowing::create([
@@ -37,7 +65,7 @@ class CatalogController extends Controller
             'status' => 'pending',
         ]);
 
-        return back()->with('success', 'Borrow request submitted.');
+        return back()->with('success', 'Pengajuan peminjaman berhasil.');
     }
 
     public function myRequests()

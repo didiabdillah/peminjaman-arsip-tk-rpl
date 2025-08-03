@@ -22,12 +22,15 @@ Route::get('/', function () {
     return view('pages.homepage.index');
 });
 
-Route::get('/catalog', function () {
-    return view('pages.catalog.index');
-})->name('catalog.index');
-Route::get('/catalog/{id}/show', function () {
-    return view('pages.catalog.show');
-})->name('catalog.show');
+Route::get('/about', function () {
+    return view('pages.about.index');
+})->name('about.index');
+
+Route::prefix('/catalog')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog.index');
+    Route::get('/{id}/show', [\App\Http\Controllers\CatalogController::class, 'show'])->name('catalog.show');
+    Route::post('{id}/request-borrow', [\App\Http\Controllers\CatalogController::class, 'requestBorrow'])->middleware(['auth'])->name('catalog.request-borrow');
+});
 
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -44,7 +47,6 @@ Route::resource('archives', ArchiveController::class)->middleware('role:arsipari
 
 Route::middleware(['auth', ])->prefix('borrower')->group(function () {
     // Route::get('catalog', [\App\Http\Controllers\Borrower\CatalogController::class, 'index'])->name('catalog.index');
-    // Route::get('catalog/request/{id}', [\App\Http\Controllers\Borrower\CatalogController::class, 'requestBorrow'])->name('catalog.request');
 });
 
 Route::get('my-requests', [\App\Http\Controllers\CatalogController::class, 'myRequests'])->middleware(['auth'])->name('catalog.my-requests');
@@ -67,18 +69,3 @@ Route::middleware(['auth', 'role:superadmin,arsiparis'])->group(function () {
     Route::get('report/borrowings/pdf', [ReportController::class, 'exportPdf'])->name('report.pdf');
     Route::get('report/borrowings/excel', [ReportController::class, 'exportExcel'])->name('report.excel');
     });
-
-// Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
-//     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-//     // Tambahkan CRUD user di sini
-// });
-
-// Route::middleware(['auth', 'role:arsiparis'])->prefix('arsiparis')->group(function () {
-//     Route::get('/arsip', [ArsipController::class, 'index'])->name('arsip.index');
-//     // Tambahkan fitur manajemen arsip
-// });
-
-// Route::middleware(['auth', 'role:peminjam'])->prefix('peminjam')->group(function () {
-//     Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
-//     // Tambahkan fitur katalog dan pengajuan
-// });

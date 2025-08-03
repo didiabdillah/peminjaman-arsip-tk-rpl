@@ -17,7 +17,7 @@
             <a href="{{ url('/') }}" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Tentang</a>
+            <a href="{{ route('about.index') }}" class="nav-link">Tentang</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('catalog.index') }}" class="nav-link">Katalog</a>
@@ -48,7 +48,7 @@
         </li>
 
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
             <span class="badge badge-warning navbar-badge">15</span>
@@ -73,7 +73,7 @@
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
-        </li>
+        </li> --}}
         @endif
         <li class="nav-item ml-2 dropdown user-menu">
           @if(Auth::check())

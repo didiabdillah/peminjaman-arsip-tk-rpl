@@ -14,6 +14,7 @@
                     <tr>
                         <th>No</th>
                         <th>Pengguna</th>
+                        <th>Kode Arsip</th>
                         <th>Arsip</th>
                         <th>Status</th>
                         <th>Tanggal Pinjam</th>
@@ -26,6 +27,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $b->user->name }}</td>
+                        <td>{{ $b->archive->archive_code }}</td>
                         <td>{{ $b->archive->title }}</td>
                         <td>
                             <span class="badge badge-{{ $b->status == 'approved' ? 'success' : ($b->status == 'pending' ? 'warning' : ($b->status == 'rejected' ? 'danger' : 'info')) }}">
@@ -36,10 +38,10 @@
                         <td>{{ $b->return_date ?? '-' }}</td>
                         <td>
                             @if($b->status == 'pending')
-                                <a href="{{ route('borrowings.approve', $b->id) }}" class="btn btn-success btn-sm">Approve</a>
-                                <a href="{{ route('borrowings.reject', $b->id) }}" class="btn btn-danger btn-sm">Reject</a>
+                                <a href="{{ route('borrowings.approve', $b->id) }}" class="btn btn-success btn-sm">Setuju</a>
+                                <a href="{{ route('borrowings.reject', $b->id) }}" class="btn btn-danger btn-sm">Tolak</a>
                             @elseif($b->status == 'approved' && !$b->return_date)
-                                <a href="{{ route('borrowings.return', $b->id) }}" class="btn btn-info btn-sm">Mark Returned</a>
+                                <a href="{{ route('borrowings.return', $b->id) }}" class="btn btn-info btn-sm">Tandai Sudah Dikembalikan</a>
                             @else
                                 -
                             @endif

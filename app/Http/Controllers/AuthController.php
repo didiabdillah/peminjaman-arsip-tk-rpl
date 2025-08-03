@@ -22,6 +22,9 @@ class AuthController extends Controller
     public function login(Request $request) {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+            if(Auth::user()->role == 'peminjam') {
+                return redirect('/');
+            }
             return redirect('/home');
         }
         return back()->withErrors(['email' => 'Email atau password salah']);

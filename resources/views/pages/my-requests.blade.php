@@ -22,6 +22,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Kode Arsip</th>
                         <th>Arsip</th>
                         <th>Tanggal Pinjam</th>
                         <th>Status</th>
@@ -32,6 +33,7 @@
                     @foreach($requests as $r)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $r->archive->archive_code }}</td>
                         <td>{{ $r->archive->title }}</td>
                         <td>{{ $r->borrow_date ?? '-' }}</td>
                         <td>
