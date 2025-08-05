@@ -15,8 +15,9 @@
 <div class="content-wrapper mt-2">
     <div class="card">
         <div class="card-body">
+            <h3 class="mb-3">Tentang Aplikasi Peminjaman Arsip</h3>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Selamat datang di Aplikasi Peminjaman Arsip, sebuah platform digital yang digunakan untuk memudahkan akses dan pemanfaatan khazanah arsip yang kami kelola. Aplikasi ini merupakan wujud dalam meningkatkan kualitas layanan publik di bidang kearsipan.
             </p>
         </div>
     </div>
