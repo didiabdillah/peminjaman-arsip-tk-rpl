@@ -20,7 +20,7 @@
                         <th>Kode</th>
                         <th>Judul</th>
                         <th>Kategori</th>
-                        <th>Quantity</th>
+                        <th>Jumlah Kuantitas</th>
                         <th>Gambar</th>
                         <th>Publikasi oleh</th>
                         <th>Action</th>

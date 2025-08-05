@@ -1,5 +1,5 @@
 @extends('layouts.admin.app')
-@section('title', 'Superadmin Dashboard')
+@section('title', 'Dashboard')
 
 @section('content')
 <div class="content-wrapper p-4">

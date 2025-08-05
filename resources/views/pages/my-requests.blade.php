@@ -1,5 +1,5 @@
 @extends('layouts.public.app')
-@section('title', 'My Borrow Requests')
+@section('title', 'Pengajuan Peminjaman Saya')
 
 @section('breadcrumb')
 <x-page-header 

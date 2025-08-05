@@ -1,6 +1,6 @@
 @extends('layouts.public.app')
 
-@section('title', 'Detail')
+@section('title', 'Detail Arsip')
 
 @section('breadcrumb')
 <x-page-header 

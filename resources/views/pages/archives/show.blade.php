@@ -14,9 +14,10 @@
                 <li class="list-group-item"><strong>Judul:</strong> {{ $archive->title }}</li>
                 <li class="list-group-item"><strong>Kategori:</strong> {{ $archive->category }}</li>
                 <li class="list-group-item"><strong>Lokasi Fisik:</strong> {{ $archive->physical_location }}</li>
-                <li class="list-group-item"><strong>Quantity:</strong> {{ $archive->quantity }}</li>
+                <li class="list-group-item"><strong>Jumlah Kuantitas:</strong> {{ $archive->quantity }}</li>
                 <li class="list-group-item"><strong>Deskripsi:</strong><br> {{ $archive->description }}</li>
                 <li class="list-group-item"><strong>Publikasi Oleh:</strong><br> {{ $archive->created_by }}</li>
+                <li class="list-group-item"><strong>Tanggal Publikasi:</strong><br> {{ Carbon\Carbon::parse($archive->created_at)->format('d F Y') }}</li>
                 <li class="list-group-item"><strong>Gambar:</strong><br>
                     @if ($archive->image)
                         <div class="text-center">

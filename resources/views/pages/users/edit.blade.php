@@ -10,7 +10,7 @@
             <form method="POST" action="{{ route('users.update', $user->id) }}">@csrf @method('PUT')
                 <div class="form-group">
                     <label>Nama</label>
-                    <input name="name" class="form-control" value="{{ $user->name }}" required>
+                    <input name="name" type="text" class="form-control" value="{{ $user->name }}" required>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input name="password" type="pa" class="form-control" value="">
+                    <input name="password" type="password" class="form-control" value="">
                 </div>
                 <div class="mt-4">
                     <a href="{{ route('users.index') }}" class="btn btn-danger">Kembali</a>

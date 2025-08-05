@@ -52,24 +52,6 @@
                 </li>
                 @endif
 
-                <!-- Catalog -->
-                {{-- <li class="nav-item">
-                    <a href="{{ route('catalog.index') }}"
-                       class="nav-link {{ request()->routeIs('catalogs.*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>Katalog</p>
-                    </a>
-                </li> --}}
-
-                <!-- My Requests -->
-                {{-- <li class="nav-item">
-                    <a href="{{ route('catalog.requests') }}"
-                       class="nav-link {{ request()->routeIs('catalog.requests.*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-list"></i>
-                        <p>Pengajuan Saya</p>
-                    </a>
-                </li> --}}
-
                 <!-- Borrowings -->
                 @if(in_array(auth()->user()->role, ['superadmin', 'arsiparis']))
                 <li class="nav-item">

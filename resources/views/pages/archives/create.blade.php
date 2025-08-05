@@ -28,7 +28,7 @@
                     <input name="physical_location" class="form-control" value="{{ old('physical_location', $archive->physical_location ?? '') }}">
                 </div>
                 <div class="form-group">
-                    <label>Quantity</label>
+                    <label>Jumlah Kuantitas</label>
                     <input name="quantity" type="number" class="form-control" value="{{ old('quantity', $archive->quantity ?? 1) }}">
                 </div>
                 <div class="form-group">

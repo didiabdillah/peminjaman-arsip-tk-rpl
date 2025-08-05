@@ -1,5 +1,5 @@
 @extends('layouts.admin.app')
-@section('title', 'Archivist Dashboard')
+@section('title', 'Dashboard')
 @section('content')
 <div class="content-wrapper p-4">
     <h3>Ringkasan Arsip Dan Peminjaman</h3>
