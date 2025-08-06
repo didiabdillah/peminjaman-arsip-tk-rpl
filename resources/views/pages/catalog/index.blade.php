@@ -3,7 +3,7 @@
 @section('title', 'Katalog')
 
 @section('breadcrumb')
-<x-page-header 
+<x-page-header
     title="Katalog"
     :breadcrumb="[
         ['label' => 'Home', 'url' => url('/')],
@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="search" class="form-control" placeholder="Pencarian" name="keyword">
+                                <input type="search" class="form-control" placeholder="Pencarian" name="keyword" value="{{ request('keyword') }}">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-default">
                                         <i class="fa fa-search"></i>
@@ -40,14 +40,14 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <input type="number" class="form-control mr-2" placeholder="eg. 2020" name="start_released_year">
+                            <input type="number" class="form-control mr-2" placeholder="eg. 2020" name="start_released_year" value="{{ request('start_released_year') }}">
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="eg. 2025" name="end_released_year">
+                            <input type="number" class="form-control" placeholder="eg. 2025" name="end_released_year" value="{{ request('end_released_year') }}">
                         </div>
                     </div>
                 </div>
-            
+
                 <button type="submit" class="btn btn-primary btn-block">Filter</button>
             </form>
         </div>
@@ -74,7 +74,7 @@
                                         <span><i class="fas fa-user-tag"></i> {{ $archive->created_by }}</span>
                                     </div>
                                     <p class="card-text text-muted">{{ Str::limit($archive->description, 50) }}</p>
-                                    
+
                                     <div class="mb-2">
                                         @php
                                             //check if the archive is available
@@ -89,7 +89,7 @@
                                         @endphp
                                         <span class="badge badge-{{ $status == 'Tersedia' ? 'success' : 'danger' }}"><i class="fas fa-status"></i> {{ $status }}</span>
                                     </div>
-                                    
+
                                     <a href="{{ route('catalog.show', $archive->id) }}" class="card-link btn btn-primary">Lihat Selengkapnya</a>
                                 </div>
                             </div>
@@ -98,7 +98,9 @@
                 </div>
                 @endforeach
 
-                {{ $archives->links() }}
+                <div class="mt-2 text-center justify-content-center d-flex">
+                    {{ $archives->links() }}
+                </div>
             @else
                 <div class="alert alert-danger">Hasil Pencarian Tidak Ditemukan</div>
             @endif
@@ -110,11 +112,11 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
                         <span class="text-light">Jumlah</span>
-                        <span class="badge bg-primary" style="font-size: 1rem;">{{ $archives->count() }}</span>
+                        <span class="badge bg-primary" style="font-size: 1rem;">{{ $archivesCount }}</span>
                     </div>
                     <div class="d-flex justify-content-between text-muted">
                         <span>Tersedia</span>
-                        <span>{{ $archives->count() - $countUnavailable }}</span>
+                        <span>{{ $archivesCount - $countUnavailable }}</span>
                     </div>
                     <div class="d-flex justify-content-between text-muted">
                         <span>Tidak Tersedia</span>

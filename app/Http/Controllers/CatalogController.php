@@ -18,7 +18,7 @@ class CatalogController extends Controller
 
         $archives = Archive::with('borrowings')
             ->where('title', 'like', "%$keyword%");
-        
+
         if ($startReleasedYear && $endReleasedYear) {
             $archives = $archives->whereBetween('created_at', [date('Y-m-d', strtotime($startReleasedYear . '-01-01')), date('Y-m-d', strtotime($endReleasedYear . '-12-31'))]);
         }else if ($startReleasedYear) {
@@ -27,9 +27,10 @@ class CatalogController extends Controller
             $archives = $archives->where('created_at', '<=', date('Y-m-d', strtotime($endReleasedYear . '-12-31')));
         }
 
+        $archivesCount = $archives->count();
         $archives = $archives->paginate(10);
 
-        return view('pages.catalog.index', compact('archives', 'keyword'));
+        return view('pages.catalog.index', compact('archives', 'keyword', 'startReleasedYear', 'endReleasedYear', 'archivesCount'));
     }
 
     public function show($id)

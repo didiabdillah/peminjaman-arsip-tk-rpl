@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use App\View\Components\Public\PageHeader;
 use App\View\Components\Public\Breadcrumb;
-
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
         //timezone
         date_default_timezone_set('Asia/Jakarta');
+
+        Paginator::useBootstrap();
     }
 }
